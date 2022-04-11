@@ -10,7 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ExpirationDate">
         <activity
-            android:name=".MainActivity"
+            android:name=".view.activity.MainActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="fullSensor"
+            android:theme="@style/AppCommonTheme"
+            android:configChanges="orientation|keyboardHidden"
+            android:windowSoftInputMode="adjustNothing"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

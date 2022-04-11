@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">记录保质期</string>
+
+    <string name="tab_main">首页</string>
+    <string name="tab_calendar">日历</string>
+    <string name="tab_setting">设置</string>
+    <string name="list">列表</string>
 </resources>
