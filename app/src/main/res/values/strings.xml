@@ -5,4 +5,6 @@
     <string name="tab_calendar">日历</string>
     <string name="tab_setting">设置</string>
     <string name="list">列表</string>
+    <string name="add">新增</string>
+    <string name="save">保存</string>
 </resources>

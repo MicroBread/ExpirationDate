@@ -7,9 +7,12 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="bg_color_grey">#F4F4F9</color>
 
     <color name="tab_text_selected">#2c2c2c</color>
     <color name="tab_text_normal">#A4A4A5</color>
 
     <color name="text_black">#2c2c2c</color>
+    <color name="text_gray">#7c7c7c</color>
+    <color name="line_color_50">#80D8D8D8</color>
 </resources>

@@ -19,6 +19,7 @@ abstract class BaseActivity<B : ViewDataBinding> : AppCompatActivity(), IActivit
         mBinding.lifecycleOwner = this
 
         changeStatusBar()
+        BaseApplication.instance().addActivity(this)
         initView()
         initData()
     }
@@ -32,5 +33,10 @@ abstract class BaseActivity<B : ViewDataBinding> : AppCompatActivity(), IActivit
             StatusBarUtil.setTransparent(this)
             StatusBarUtil.setLightMode(this)
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        BaseApplication.instance().removeActivity(this)
     }
 }

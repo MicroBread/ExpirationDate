@@ -1,13 +1,12 @@
 package com.meng.expirationdate.view.fragment
 
-import android.util.Log
-import android.widget.Toast
-import com.blankj.utilcode.util.ToastUtils
+import android.content.Intent
 import com.meng.expirationdate.R
 import com.meng.expirationdate.base.BaseFragment
 import com.meng.expirationdate.databinding.FragmentMainHomeBinding
 import com.meng.expirationdate.utils.CustomToast
 import com.meng.expirationdate.utils.onClickNoAnim
+import com.meng.expirationdate.view.activity.AddItemActivity
 import com.meng.expirationdate.viewmodel.MainHomeViewModel
 
 class MainHomeFragment: BaseFragment<FragmentMainHomeBinding>() {
@@ -19,11 +18,11 @@ class MainHomeFragment: BaseFragment<FragmentMainHomeBinding>() {
 
     override fun initView() {
         mBinding.imageSearch.onClickNoAnim {
-            CustomToast.showToast(it.context, "搜索页待完成")
+            CustomToast.showToast("搜索页待完成")
         }
 
         mBinding.imageAdd.onClickNoAnim {
-            CustomToast.showToast(it.context, "添加条目")
+            startActivity(Intent(activity, AddItemActivity::class.java))
         }
     }
 
