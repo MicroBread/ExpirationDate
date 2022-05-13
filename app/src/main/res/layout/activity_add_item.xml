@@ -80,7 +80,7 @@
                 android:layout_marginStart="5dp"
                 android:includeFontPadding="false"
                 android:layout_centerVertical="true"
-                android:text="名称"
+                android:text="@string/name"
                 android:textColor="@color/text_gray"
                 android:textSize="14sp"/>
 
@@ -89,7 +89,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginStart="100dp"
-                android:hint="必填"
+                android:hint="@string/required"
                 android:textColorHint="@color/text_gray"
                 android:textColor="@color/text_black"
                 android:textSize="14sp"
@@ -125,7 +125,7 @@
                 android:layout_marginStart="5dp"
                 android:includeFontPadding="false"
                 android:layout_centerVertical="true"
-                android:text="数量"
+                android:text="@string/number"
                 android:textColor="@color/text_gray"
                 android:textSize="14sp"/>
 
@@ -134,7 +134,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginStart="100dp"
-                android:hint="必填"
+                android:hint="@string/required"
                 android:textColorHint="@color/text_gray"
                 android:textColor="@color/text_black"
                 android:textSize="14sp"
@@ -159,31 +159,31 @@
             app:layout_constraintTop_toBottomOf="@id/rl_num">
 
             <ImageView
-                android:id="@+id/iv_item_desc"
+                android:id="@+id/iv_item_remark"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_centerVertical="true"
-                android:src="@mipmap/item_desc" />
+                android:src="@mipmap/item_remark" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toEndOf="@id/iv_item_desc"
+                android:layout_toEndOf="@id/iv_item_remark"
                 android:layout_marginStart="5dp"
                 android:includeFontPadding="false"
                 android:layout_centerVertical="true"
-                android:text="备注"
+                android:text="@string/remark"
                 android:textColor="@color/text_gray"
                 android:textSize="14sp"/>
 
             <EditText
-                android:id="@+id/et_item_desc"
+                android:id="@+id/et_item_remark"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginStart="100dp"
                 android:background="@null"
                 android:gravity="center_vertical"
-                android:hint="选填"
+                android:hint="@string/optional"
                 android:singleLine="true"
                 android:textColor="@color/text_black"
                 android:textColorHint="@color/text_gray"
@@ -193,7 +193,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_alignParentBottom="true"
-                android:layout_alignStart="@id/iv_item_desc"
+                android:layout_alignStart="@id/iv_item_remark"
                 android:background="@color/line_color_50" />
         </RelativeLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
