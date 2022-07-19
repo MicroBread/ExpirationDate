@@ -9,10 +9,11 @@ object MyStringUtils {
     @SuppressLint("SimpleDateFormat")
     @JvmStatic
     fun getDate(date: Long?): String {
-        if (date?:0 > 0) {
+        if ((date ?: 0) > 0) {
             return try {
-                SimpleDateFormat("yyyy-MM-dd").parse(date.toString())!!.toString()
+                SimpleDateFormat("yyyy年MM月dd日").parse(date.toString())!!.toString()
             } catch (e: Exception) {
+                e.printStackTrace()
                 StringUtils.getString(R.string.date_error)
             }
 

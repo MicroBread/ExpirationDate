@@ -9,6 +9,7 @@
             type="com.meng.expirationdate.viewmodel.AddItemViewModel" />
 
         <import type="com.meng.expirationdate.utils.MyStringUtils"/>
+        <import type="android.view.View"/>
     </data>
     
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -99,13 +100,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginStart="100dp"
-                android:hint="@string/required"
-                android:textColorHint="@color/text_gray"
-                android:textColor="@color/text_black"
-                android:textSize="14sp"
+                android:background="@null"
                 android:gravity="center_vertical"
+                android:hint="@string/required"
                 android:singleLine="true"
-                android:background="@null"/>
+                android:textColor="@color/text_black"
+                android:textColorHint="@color/text_gray"
+                android:textSize="14sp" />
 
             <View
                 android:layout_width="match_parent"
@@ -144,14 +145,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginStart="100dp"
-                android:hint="@string/required"
-                android:textColorHint="@color/text_gray"
-                android:textColor="@color/text_black"
-                android:textSize="14sp"
-                android:inputType="number"
+                android:background="@null"
                 android:gravity="center_vertical"
+                android:hint="@string/required"
+                android:inputType="number"
                 android:singleLine="true"
-                android:background="@null"/>
+                android:textColor="@color/text_black"
+                android:textColorHint="@color/text_gray"
+                android:textSize="14sp" />
 
             <View
                 android:layout_width="match_parent"
@@ -293,7 +294,6 @@
                 android:layout_height="match_parent"
                 android:layout_marginStart="100dp"
                 android:gravity="center_vertical"
-                android:text="@{MyStringUtils.getDate(vm.date)}"
                 android:textColor="@color/text_black"
                 android:textSize="14sp"
                 tools:text="2022-05-15" />
@@ -410,7 +410,23 @@
                 android:gravity="center_vertical"
                 android:textColor="@color/text_black"
                 android:textSize="14sp"
-                tools:text="780天" />
+                android:visibility="@{vm.dateType==1?View.VISIBLE:View.GONE,default=gone}"
+                tools:text="2022-07-29" />
+
+            <EditText
+                android:id="@+id/et_view_time"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="100dp"
+                android:gravity="center_vertical"
+                android:hint="@string/input_days"
+                android:singleLine="true"
+                android:textColor="@color/text_black"
+                android:textColorHint="@color/text_gray"
+                android:textSize="14sp"
+                android:inputType="number"
+                android:background="@null"
+                android:visibility="@{vm.dateType==0?View.VISIBLE:View.GONE}" />
 
             <ImageView
                 android:layout_width="15dp"
@@ -418,7 +434,8 @@
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="10dp"
-                android:src="@mipmap/right_arrow" />
+                android:src="@mipmap/right_arrow"
+                android:visibility="@{vm.dateType==1?View.VISIBLE:View.INVISIBLE}"/>
 
             <View
                 android:layout_width="match_parent"
