@@ -19,4 +19,6 @@
     <string name="date_type">过期计算方式</string>
     <string name="unavailable_now">功能暂不可用</string>
     <string name="date_error">日期异常</string>
+    <string name="name_cannot_null">名称不能为空</string>
+    <string name="num_cannot_null">数量不能为空</string>
 </resources>

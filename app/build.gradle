@@ -2,13 +2,15 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
 }
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdk 31
 
     defaultConfig {
         applicationId "com.meng.expirationdate"
-        minSdk 21
+        minSdk 23
         targetSdk 31
         versionCode 1
         versionName "1.0"
@@ -35,6 +37,16 @@ android {
     }
 }
 
+repositories {
+    mavenCentral()
+    google()
+    maven { url "https://jitpack.io" }
+    maven { url "https://maven.aliyun.com/nexus/content/groups/public/"}
+    maven { url 'https://maven.aliyun.com/repository/public/' }
+    maven { url 'https://maven.aliyun.com/repository/google/'}
+    maven { url 'https://maven.aliyun.com/repository/jcenter/'}
+}
+
 dependencies {
 
     implementation 'androidx.core:core-ktx:1.7.0'
@@ -53,7 +65,6 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.1'
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.1'
     implementation 'androidx.lifecycle:lifecycle-common-java8:2.3.1'
-    implementation 'androidx.core:core-ktx:1.7.0'
 
     //room
     implementation 'androidx.room:room-runtime:2.3.0'
@@ -64,20 +75,20 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.9.0'
-    implementation 'com.squareup.okhttp3:okhttp:4.2.2'
-    implementation 'com.squareup.okhttp3:logging-interceptor:3.9.0'
-    implementation 'jp.wasabeef:glide-transformations:4.0.1'
-    implementation 'com.google.code.gson:gson:2.8.6'
+    implementation 'com.squareup.okhttp3:okhttp:5.0.0-alpha.10'
+    implementation 'com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.10'
+    implementation 'jp.wasabeef:glide-transformations:4.3.0'
+    implementation 'com.google.code.gson:gson:2.9.0'
 //    implementation 'com.github.franmontiel:PersistentCookieJar:v1.0.1'
 
-    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    implementation 'com.github.bumptech.glide:glide:4.13.2'
 
 
     //rx2
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
-    implementation 'io.reactivex.rxjava2:rxjava:2.2.10'
-    implementation 'com.uber.autodispose:autodispose:0.8.0'
-    implementation 'com.uber.autodispose:autodispose-android-archcomponents:0.8.0'
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.21'
+    implementation 'com.uber.autodispose:autodispose:1.4.0'
+    implementation 'com.uber.autodispose:autodispose-android-archcomponents:1.4.0'
     implementation 'com.jakewharton.rxbinding3:rxbinding:3.1.0'
 
     //eventbus
@@ -100,9 +111,12 @@ dependencies {
 
 //    implementation 'com.tencent.bugly:crashreport:3.1.0'
 
-    implementation 'com.tencent:mmkv-static:1.2.2'
+    implementation 'com.tencent:mmkv-static:1.2.13'
 
-    implementation 'com.blankj:utilcodex:1.29.0'
+    implementation 'com.blankj:utilcodex:1.31.0'
+
+    implementation project(':flutter')
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
 
 configurations {
