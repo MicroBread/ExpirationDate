@@ -13,6 +13,12 @@ interface ItemsDAO {
     @Delete
     fun deleteItem(vararg item: ItemInfo)
 
+    @Query("SELECT * FROM ItemInfo ORDER BY itemId")
+    fun getAllItems(): List<ItemInfo>
+
     @Query("SELECT * FROM ItemInfo WHERE itemId = :itemID")
-    fun getUser(itemID: Long): ItemInfo?
+    fun getItemById(itemID: Long): ItemInfo?
+
+    @Query("SELECT * FROM ItemInfo WHERE itemName = :itemName")
+    fun getItemByName(itemName: String): ItemInfo?
 }

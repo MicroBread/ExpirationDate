@@ -14,16 +14,20 @@
     <string name="remark">备注</string>
     <string name="sort">分类</string>
     <string name="production_date">生产日期</string>
+    <string name="production_date_format">生产日期:%s</string>
     <string name="shelf_life">保质天数</string>
     <string name="expiration_date">过期日期</string>
-    <string name="date_format">%d年%d月%d日</string>
+    <string name="expiration_date_format">过期日期:%s</string>
+    <string name="date_format">%d-%d-%d</string>
     <string name="input_days">输入天数</string>
     <string name="date_type">过期计算方式</string>
     <string name="unavailable_now">功能暂不可用</string>
     <string name="date_error">日期异常</string>
+    <string name="remark_null">暂无描述</string>
     <string name="name_cannot_null">名称不能为空</string>
     <string name="num_cannot_null">数量不能为空</string>
     <string name="time_cannot_null">请输入保质天数</string>
     <string name="time_cannot_null2">请选择保质日期</string>
     <string name="input_time_wrong">输入保质天数有误</string>
+    <string name="add_success">添加成功</string>
 </resources>

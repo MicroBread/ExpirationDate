@@ -11,7 +11,7 @@ object MyStringUtils {
     fun getDate(date: Long?): String {
         if ((date ?: 0) > 0) {
             return try {
-                SimpleDateFormat("yyyy年MM月dd日").parse(date.toString())!!.toString()
+                SimpleDateFormat("yyyy-MM-dd").parse(date.toString())!!.toString()
             } catch (e: Exception) {
                 e.printStackTrace()
                 StringUtils.getString(R.string.date_error)
@@ -19,5 +19,20 @@ object MyStringUtils {
 
         }
         return StringUtils.getString(R.string.date_error)
+    }
+
+    @JvmStatic
+    fun getRemark(remark: String?): String {
+        return if (remark.isNullOrBlank()) {
+            StringUtils.getString(R.string.remark_null)
+        } else {
+            remark
+        }
+    }
+
+    @JvmStatic
+    fun formatDate(type: Int, dateStr: String): String {
+        return String.format(StringUtils.getString(
+            if (type == 0) R.string.production_date_format else R.string.expiration_date_format), dateStr)
     }
 }

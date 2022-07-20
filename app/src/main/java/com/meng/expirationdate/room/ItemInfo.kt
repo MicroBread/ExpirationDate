@@ -7,11 +7,16 @@ import androidx.room.PrimaryKey
 class ItemInfo(
     @PrimaryKey val itemId: Long, //物品ID
     var itemName: String, //物品名称
+    var itemNum: Int, //物品数量
     var itemDescription: String?, //物品备注
     var itemType: Int?, //物品类型
-    var itemProductionDate: Long?, //生产日期
-    var itemExpirationDate: Long?, //保质期
-)
+    var itemProductionDate: String?, //生产日期
+    var itemExpirationDate: String?, //过期日期
+) {
+    override fun toString(): String {
+        return "物品ID:$itemId, 物品名称:$itemName, 物品数量:$itemNum, 物品备注:$itemDescription, 物品类型:$itemType, 生产日期:$itemProductionDate, 过期日期:$itemExpirationDate"
+    }
+}
 
 /**
     物品类型枚举
