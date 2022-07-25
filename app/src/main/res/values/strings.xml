@@ -13,6 +13,8 @@
     <string name="number">数量</string>
     <string name="remark">备注</string>
     <string name="sort">分类</string>
+    <string name="status">状态</string>
+    <string name="add_date">添加日期</string>
     <string name="production_date">生产日期</string>
     <string name="production_date_format">生产日期:%s</string>
     <string name="shelf_life">保质天数</string>
@@ -30,4 +32,13 @@
     <string name="time_cannot_null2">请选择保质日期</string>
     <string name="input_time_wrong">输入保质天数有误</string>
     <string name="add_success">添加成功</string>
+    <string name="expired">已过期</string>
+    <string name="not_expired">未过期</string>
+    <string name="item_detail">物品详情</string>
+    <string name="edit">编辑</string>
+    <string name="delete">删除</string>
+    <string name="delete_confirm_msg">确认删除"%s"？</string>
+    <string name="delete_success">删除成功</string>
+    <string name="sure">确认</string>
+    <string name="cancel">取消</string>
 </resources>

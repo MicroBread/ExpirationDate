@@ -1,5 +1,6 @@
 package com.meng.expirationdate.view.activity
 
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
@@ -66,6 +67,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             }
             true
         }
+    }
+
+    fun getRootView(): ViewGroup {
+        return mBinding.clRoot
     }
 
     class MyAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {

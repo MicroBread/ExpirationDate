@@ -16,4 +16,16 @@
     <color name="text_black">#2c2c2c</color>
     <color name="text_gray">#7c7c7c</color>
     <color name="line_color_50">#80D8D8D8</color>
+
+    <color name="right_green">#1afa29</color>
+    <color name="wrong_red">#d81e06</color>
+
+    <color name="public_grayActionSheet">#A4A4A5</color>
+    <color name="public_line">#F0F0F0</color>
+    <color name="public_lineActionSheet">#373861</color>
+    <color name="public_vip_color">#FF5140</color>
+    <color name="public_subtitle_text">#444448</color>
+    <color name="public_tip_text">#808082</color>
+    <color name="public_blueText">#408BFB</color>
+
 </resources>

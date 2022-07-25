@@ -5,18 +5,13 @@ import android.graphics.drawable.AnimationDrawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.RecyclerView
-import com.blankj.utilcode.util.StringUtils
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.bitmap.CenterCrop
-import com.bumptech.glide.request.RequestOptions
 import com.meng.expirationdate.R
 import com.meng.expirationdate.databinding.ListItemInfoBinding
 import com.meng.expirationdate.room.ItemInfo
+import com.meng.expirationdate.utils.onClickNoAnim
 
 /**
  * 物品详情条目适配器
@@ -32,6 +27,11 @@ class ItemsAdapter(private val mContext: Context, private val datas: MutableList
         val bean = datas[position]
         val nearBinding = holder.bind as ListItemInfoBinding
         nearBinding.bean = bean
+        nearBinding.clRoot.onClickNoAnim { listener?.itemClick(bean) }
+        nearBinding.clRoot.setOnLongClickListener {
+            listener?.itemLongClick(bean)
+            true
+        }
         holder.bind.executePendingBindings()
     }
 
@@ -54,6 +54,7 @@ class ItemsAdapter(private val mContext: Context, private val datas: MutableList
 
     interface OnItemClickListener {
         fun itemClick(item: ItemInfo)
+        fun itemLongClick(item: ItemInfo)
         fun itemChildClick(view: View, item: ItemInfo, anim: AnimationDrawable)
     }
 }

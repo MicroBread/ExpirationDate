@@ -15,4 +15,34 @@
     <style name="tabTextStyle">
         <item name="android:textSize">10sp</item>
     </style>
+
+    <style name="Translucent_NoTitle_Default" parent="android:style/Theme.Dialog">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+
+    <style name="Bottom_Translucent_NoTitle_hasDimEnabled" parent="Theme.Design.BottomSheetDialog">
+        <item name="android:background">#00000000</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+
+    <style name="ActionSheetStyleiOS" parent="public_AppTheme">
+        <item name="actionSheetBackground">@android:color/transparent</item>
+        <item name="cancelButtonBackground">@drawable/public_select_ios_10dp_conner</item>
+        <item name="otherButtonTopBackground">@drawable/public_select_ios_10dp_top_conner</item>
+        <item name="otherButtonMiddleBackground">@drawable/public_select_ios_0dp_conner</item>
+        <item name="otherButtonBottomBackground">@drawable/public_select_ios_10dp_bottom_conner</item>
+        <item name="otherButtonSingleBackground">@drawable/public_select_ios_10dp_conner</item>
+        <item name="cancelButtonTextColor">#444448</item>
+        <item name="otherButtonTextColor">#444448</item>
+        <item name="topButtonTextColor">#444448</item>
+        <item name="actionSheetPadding">5dp</item>
+        <item name="otherButtonSpacing">0dp</item>
+        <item name="cancelButtonMarginTop">5dp</item>
+        <item name="actionSheetTextSize">16sp</item>
+    </style>
+
+    <style name="public_diy_text_style" parent="@android:style/Widget.TextView"/>
 </resources>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/public_white_10dp_conner">
+
+    <TextView
+        android:id="@+id/tv1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:textColor="@color/public_subtitle_text"
+        android:textSize="17sp"
+        android:visibility="gone"
+        android:includeFontPadding="false"
+        tools:visibility="visible"/>
+
+    <TextView
+        android:id="@+id/tv2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv1"
+        android:gravity="center"
+        android:layout_marginTop="22dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginEnd="18dp"
+        android:textColor="@color/public_tip_text"
+        android:lineSpacingMultiplier="1.2"
+        android:textSize="14sp"
+        android:includeFontPadding="false"
+        tools:visibility="visible"/>
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/public_line"
+        android:layout_below="@id/tv2"
+        android:layout_marginTop="24dp"/>
+
+    <LinearLayout
+        android:id="@+id/ll_cancelok"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/line"
+        android:orientation="horizontal"
+        android:visibility="gone"
+        tools:visibility="visible"
+        >
+
+        <TextView
+            android:id="@+id/tv_left"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            tools:text="算了吧！"
+            android:textColor="#A4A4A5"
+            android:textSize="16sp"
+            tools:visibility="gone"
+            />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/public_line"/>
+
+        <TextView
+            android:id="@+id/tv_rignt"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            tools:text="狠心删除"
+            android:textColor="@color/public_blueText"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/ok"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@+id/line"
+        android:gravity="center"
+        tools:text="知道啦！"
+        android:textColor="@color/public_blueText"
+        android:textSize="16sp"
+        android:visibility="gone"
+        tools:visibility="gone"
+        />
+</RelativeLayout>

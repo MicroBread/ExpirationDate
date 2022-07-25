@@ -11,9 +11,9 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_root"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        >
+        android:layout_height="70dp">
 
         <ImageView
             android:id="@+id/iv_icon"
@@ -35,6 +35,17 @@
             android:textSize="15sp"
             app:layout_constraintStart_toEndOf="@id/iv_icon"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_item_status"
+            android:layout_width="14dp"
+            android:layout_height="14dp"
+            android:layout_marginStart="5dp"
+            android:src="@{(MyStringUtils.compareTime(bean.itemExpirationDate)==true) ? @drawable/icon_wrong : @drawable/icon_right}"
+            app:layout_constraintStart_toEndOf="@id/tv_name"
+            app:layout_constraintTop_toTopOf="@id/tv_name"
+            app:layout_constraintBottom_toBottomOf="@id/tv_name"/>
+
 
         <TextView
             android:id="@+id/tv_remark"
