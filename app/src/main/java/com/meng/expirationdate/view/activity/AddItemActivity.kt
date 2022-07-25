@@ -13,6 +13,7 @@ import com.meng.expirationdate.room.DBManager
 import com.meng.expirationdate.room.ItemInfo
 import com.meng.expirationdate.room.ItemType
 import com.meng.expirationdate.utils.CustomToast
+import com.meng.expirationdate.utils.MyStringUtils
 import com.meng.expirationdate.utils.onClickNoAnim
 import com.meng.expirationdate.viewmodel.AddItemViewModel
 import java.text.SimpleDateFormat
@@ -27,6 +28,7 @@ class AddItemActivity: BaseActivity<ActivityAddItemBinding>(), DatePickerDialog.
 
     private var clickType = 0 //选择日期点击事件类型：0生产日期 1过期时间
     private lateinit var expirationDate: String //最终过期时间
+    private var itemId: Long = 0L //待编辑物品ID
 
     override fun initView() {
         mBinding.apply {
@@ -53,14 +55,31 @@ class AddItemActivity: BaseActivity<ActivityAddItemBinding>(), DatePickerDialog.
     }
 
     override fun initData() {
-        val calendar = Calendar.getInstance()
-        //生产日期默认为当前日期
-        mBinding.tvItemDate.text = String.format(getString(R.string.date_format),
-            calendar.get(Calendar.YEAR),
-            calendar.get(Calendar.MONTH) + 1,
-            calendar.get(Calendar.DAY_OF_MONTH))
-        //最终保质期默认为当前日期
-        expirationDate = mBinding.tvItemDate.text.toString()
+        val bundle = intent.extras?.getBundle("bundle")
+        val type = bundle?.getInt("type") ?: 0 //0添加 1编辑
+        mViewModel.pageType.set(type)
+        if (type == 0) {
+            val calendar = Calendar.getInstance()
+            //生产日期默认为当前日期
+            mBinding.tvItemDate.text = String.format(getString(R.string.date_format),
+                calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.MONTH) + 1,
+                calendar.get(Calendar.DAY_OF_MONTH))
+            //最终保质期默认为当前日期
+            expirationDate = mBinding.tvItemDate.text.toString()
+        } else {
+            //编辑信息
+            bundle?.getParcelable<ItemInfo>("itemInfo")?.let { info ->
+                itemId = info.itemId //记录待编辑的物品ID
+                mBinding.etItemName.setText(info.itemName)
+                mBinding.etItemNum.setText(info.itemNum.toString())
+                mBinding.etItemRemark.setText(MyStringUtils.getRemark(info.itemDescription))
+                mBinding.tvItemDate.text = info.itemProductionDate
+                mViewModel.dateType.set(1)
+                mBinding.tvItemTime.text = info.itemExpirationDate
+                expirationDate = info.itemExpirationDate ?: ""
+            }
+        }
     }
 
     private fun initClick() {
@@ -124,16 +143,21 @@ class AddItemActivity: BaseActivity<ActivityAddItemBinding>(), DatePickerDialog.
                 CustomToast.showToast(getString(R.string.time_cannot_null2))
                 return@onClickNoAnim
             }
-            DBManager.getItemsDAO()?.insertItem(
-                ItemInfo(
-                    itemId = System.currentTimeMillis(),
-                    itemName = mBinding.etItemName.text.toString(),
-                    itemNum = mBinding.etItemNum.text.toString().toInt(),
-                    itemDescription = mBinding.etItemRemark.text.toString(),
-                    itemType = ItemType.DEFAULT.type,
-                    itemProductionDate = mBinding.tvItemDate.text.toString(),
-                    itemExpirationDate = expirationDate))
-            CustomToast.showToast(getString(R.string.add_success))
+            val itemInfo = ItemInfo(
+                itemId = if (mViewModel.pageType.get() == 0) System.currentTimeMillis() else itemId,
+                itemName = mBinding.etItemName.text.toString(),
+                itemNum = mBinding.etItemNum.text.toString().toInt(),
+                itemDescription = mBinding.etItemRemark.text.toString(),
+                itemType = ItemType.DEFAULT.type,
+                itemProductionDate = mBinding.tvItemDate.text.toString(),
+                itemExpirationDate = expirationDate
+            )
+            if (mViewModel.pageType.get() == 0) {
+                DBManager.getItemsDAO()?.insertItem(itemInfo) //添加数据
+            } else {
+                DBManager.getItemsDAO()?.updateItem(itemInfo) //更新数据
+            }
+            CustomToast.showToast(getString(R.string.save_success))
             PublicMsgEvent.dataChangeEvent(0) //通知数据更新
             finish()
         }
@@ -153,6 +177,9 @@ class AddItemActivity: BaseActivity<ActivityAddItemBinding>(), DatePickerDialog.
         dialog.show()
     }
 
+    /**
+     * 日期选择回调
+     * */
     override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
         val dateStr = String.format(getString(R.string.date_format), year, month+1, dayOfMonth)
         if (clickType == 0) {

@@ -44,7 +44,11 @@ class MainHomeFragment: BaseFragment<FragmentMainHomeBinding>() {
 
         mBinding.imageAdd.onClickNoAnim {
             //跳转添加页面
-            startActivity(Intent(activity, AddItemActivity::class.java))
+            val intent = Intent(activity, AddItemActivity::class.java)
+            val bundle = Bundle()
+            bundle.putInt("type", 0)
+            intent.putExtra("bundle", bundle)
+            startActivity(intent)
         }
 
         //初始化物品条目适配器
@@ -77,8 +81,13 @@ class MainHomeFragment: BaseFragment<FragmentMainHomeBinding>() {
                             actionSheet.dismiss()
                             when (index) {
                                 0 -> {
-                                    //todo 编辑条目
-                                    CustomToast.showToast("编辑:${item.itemName}")
+                                    //编辑条目
+                                    val intent = Intent(activity, AddItemActivity::class.java)
+                                    val bundle = Bundle()
+                                    bundle.putInt("type", 1)
+                                    bundle.putParcelable("itemInfo", item)
+                                    intent.putExtra("bundle", bundle)
+                                    startActivity(intent)
                                 }
                                 1 -> {
                                     //删除条目

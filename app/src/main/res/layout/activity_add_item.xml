@@ -28,7 +28,7 @@
             android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/add"
+            android:text="@{vm.pageType == 0 ? @string/add : @string/edit}"
             android:textColor="@color/text_black"
             android:textSize="17sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -350,7 +350,7 @@
                     android:layout_width="90dp"
                     android:layout_height="25dp"
                     android:gravity="center"
-                    android:text="保质天数"
+                    android:text="@string/shelf_life"
                     android:textColor="@color/text_black"
                     android:textSize="12sp"
                     android:background="@{vm.dateType==0?@drawable/white_bg_3dp_conner:@drawable/transparent_bg}"/>
@@ -360,7 +360,7 @@
                     android:layout_width="90dp"
                     android:layout_height="25dp"
                     android:gravity="center"
-                    android:text="过期日期"
+                    android:text="@string/expiration_date"
                     android:textColor="@color/text_black"
                     android:textSize="12sp"
                     android:background="@{vm.dateType!=0?@drawable/white_bg_3dp_conner:@drawable/transparent_bg}"/>

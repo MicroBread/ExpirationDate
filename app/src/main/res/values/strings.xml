@@ -32,6 +32,7 @@
     <string name="time_cannot_null2">请选择保质日期</string>
     <string name="input_time_wrong">输入保质天数有误</string>
     <string name="add_success">添加成功</string>
+    <string name="save_success">保存成功</string>
     <string name="expired">已过期</string>
     <string name="not_expired">未过期</string>
     <string name="item_detail">物品详情</string>
