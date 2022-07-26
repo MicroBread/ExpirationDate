@@ -1,6 +1,7 @@
 package com.meng.expirationdate.view.activity
 
 import android.app.DatePickerDialog
+import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.DatePicker
@@ -15,6 +16,7 @@ import com.meng.expirationdate.room.ItemType
 import com.meng.expirationdate.utils.CustomToast
 import com.meng.expirationdate.utils.MyStringUtils
 import com.meng.expirationdate.utils.onClickNoAnim
+import com.meng.expirationdate.view.fragment.ItemTypeDialogFragment
 import com.meng.expirationdate.viewmodel.AddItemViewModel
 import java.text.SimpleDateFormat
 import java.util.*
@@ -71,6 +73,7 @@ class AddItemActivity: BaseActivity<ActivityAddItemBinding>(), DatePickerDialog.
             //编辑信息
             bundle?.getParcelable<ItemInfo>("itemInfo")?.let { info ->
                 itemId = info.itemId //记录待编辑的物品ID
+                mViewModel.itemType.set(info.itemType ?: ItemType.DEFAULT.type)
                 mBinding.etItemName.setText(info.itemName)
                 mBinding.etItemNum.setText(info.itemNum.toString())
                 mBinding.etItemRemark.setText(MyStringUtils.getRemark(info.itemDescription))
@@ -99,7 +102,11 @@ class AddItemActivity: BaseActivity<ActivityAddItemBinding>(), DatePickerDialog.
 
         //todo 产品分类
         mBinding.rlSort.onClickNoAnim {
-            CustomToast.showToast(getString(R.string.unavailable_now))
+            val itemTypeDialogFragment = ItemTypeDialogFragment()
+            val bundle = Bundle()
+            bundle.putInt("itemType", mViewModel.itemType.get() ?: ItemType.DEFAULT.type)
+            itemTypeDialogFragment.arguments = bundle
+            itemTypeDialogFragment.showNow(supportFragmentManager, "ItemTypeDialogFragment")
         }
 
         //设置生产日期
@@ -148,7 +155,7 @@ class AddItemActivity: BaseActivity<ActivityAddItemBinding>(), DatePickerDialog.
                 itemName = mBinding.etItemName.text.toString(),
                 itemNum = mBinding.etItemNum.text.toString().toInt(),
                 itemDescription = mBinding.etItemRemark.text.toString(),
-                itemType = ItemType.DEFAULT.type,
+                itemType = mViewModel.itemType.get(),
                 itemProductionDate = mBinding.tvItemDate.text.toString(),
                 itemExpirationDate = expirationDate
             )
@@ -207,5 +214,12 @@ class AddItemActivity: BaseActivity<ActivityAddItemBinding>(), DatePickerDialog.
             return sdf.format(rightNow.time)
         }
         return ""
+    }
+
+    /**
+     * 设置物品类型
+     * */
+    fun setItemType(type: Int) {
+        mViewModel.itemType.set(type)
     }
 }

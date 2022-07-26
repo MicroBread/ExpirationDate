@@ -59,6 +59,8 @@ object MyStringUtils {
             ItemType.MEAT.type -> ItemType.MEAT.typeName
             ItemType.VEGETABLE.type -> ItemType.VEGETABLE.typeName
             ItemType.SEASONING.type -> ItemType.SEASONING.typeName
+            ItemType.SNACK.type -> ItemType.SNACK.typeName
+            ItemType.DRINKS.type -> ItemType.DRINKS.typeName
             ItemType.COSMETIC.type -> ItemType.COSMETIC.typeName
             else -> ItemType.DEFAULT.typeName
         }

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="item"
+            type="com.meng.expirationdate.viewmodel.ItemTypeSelectViewModel" />
+
+        <variable
+            name="position"
+            type="Integer" />
+
+        <variable
+            name="presenter"
+            type="com.guoyang.recyclerviewbindingadapter.ItemClickPresenter&lt;com.meng.expirationdate.viewmodel.ItemTypeSelectViewModel>" />
+
+        <import type="com.meng.expirationdate.utils.Utils"/>
+        <import type="com.meng.expirationdate.utils.MyStringUtils"/>
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="60dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/gray_bg_3dp_conner"
+        app:itemBean="@{item}"
+        app:itemClickPresenter="@{presenter}"
+        app:itemPosition="@{position}">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@{item.isSelected() ? @drawable/selected_bg_3dp_conner : @drawable/transparent_bg}"/>
+
+        <ImageView
+            android:id="@+id/iv_icon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            app:drawableRes="@{Utils.getTypeDrawables(item.type)}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="@{item.typeName}"
+            android:textColor="@color/text_black"
+            android:textSize="13sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_icon"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -241,7 +241,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginStart="100dp"
                 android:gravity="center_vertical"
-                android:text="@string/unavailable_now"
+                android:text="@{MyStringUtils.getItemType(vm.itemType)}"
                 android:singleLine="true"
                 android:textColor="@color/text_black"
                 android:textSize="14sp" />

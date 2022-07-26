@@ -8,6 +8,7 @@
             type="com.meng.expirationdate.room.ItemInfo" />
 
         <import type="com.meng.expirationdate.utils.MyStringUtils"/>
+        <import type="com.meng.expirationdate.utils.Utils"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -20,6 +21,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="10dp"
+            app:drawableRes="@{Utils.getTypeDrawables(bean.itemType)}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>

@@ -66,7 +66,7 @@ class MainHomeFragment: BaseFragment<FragmentMainHomeBinding>() {
             }
 
             override fun itemLongClick(item: ItemInfo) {
-                //todo 长按条目
+                //长按条目
                 val title = arrayOf(getString(R.string.edit), getString(R.string.delete))
                 activity?.setTheme(R.style.ActionSheetStyleiOS)
                 ActionSheet.createBuilder(activity?.supportFragmentManager, (activity as MainActivity).getRootView())
@@ -92,7 +92,9 @@ class MainHomeFragment: BaseFragment<FragmentMainHomeBinding>() {
                                 1 -> {
                                     //删除条目
                                     AlertMsgDialog.showMsgDialog(activity, "", String.format(getString(R.string.delete_confirm_msg), item.itemName), true, getString(R.string.cancel), null, getString(R.string.sure)) {
+                                        //数据库删除
                                         DBManager.getItemsDAO()?.deleteItem(item)
+                                        //显示列表删除
                                         mViewModel.dataList.value?.let {
                                             for (listIndex in 0 until it.size) {
                                                 if (item.itemId == it[listIndex].itemId) {
@@ -119,9 +121,10 @@ class MainHomeFragment: BaseFragment<FragmentMainHomeBinding>() {
     }
 
     override fun initData() {
-        refreshAllData()
+        refreshAllData() //加载所有item数据
 
         LiveEventBus.get(PublicMsgEvent.DATA_CHANGE_EVENT, Int::class.java).observe(this) {
+            //监听数据发生变化，刷新列表
             refreshAllData()
         }
     }
