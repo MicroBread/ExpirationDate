@@ -24,6 +24,9 @@ import com.meng.expirationdate.widget.ActionSheet
 import com.meng.expirationdate.widget.AlertMsgDialog
 import com.meng.expirationdate.widget.WrapContentLinearLayoutManager
 
+/**
+ * 首页-主页列表
+ * */
 class MainHomeFragment: BaseFragment<FragmentMainHomeBinding>() {
     override fun getLayoutId(): Int = R.layout.fragment_main_home
 
@@ -104,6 +107,7 @@ class MainHomeFragment: BaseFragment<FragmentMainHomeBinding>() {
                                                     break
                                                 }
                                             }
+                                            mViewModel.dataListSize.set(it.size)
                                         }
                                     }
                                 }
@@ -135,10 +139,11 @@ class MainHomeFragment: BaseFragment<FragmentMainHomeBinding>() {
     @SuppressLint("NotifyDataSetChanged")
     private fun refreshAllData() {
         val list = DBManager.getItemsDAO()?.getAllItems()
+        mViewModel.dataList.value?.clear()
         if (list != null && list.isNotEmpty()) {
-            mViewModel.dataList.value?.clear()
             mViewModel.dataList.value?.addAll(list)
-            adapter.notifyDataSetChanged()
         }
+        mViewModel.dataListSize.set(mViewModel.dataList.value?.size ?: 0)
+        adapter.notifyDataSetChanged()
     }
 }

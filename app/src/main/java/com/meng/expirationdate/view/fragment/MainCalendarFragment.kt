@@ -5,6 +5,9 @@ import com.meng.expirationdate.base.BaseFragment
 import com.meng.expirationdate.databinding.FragmentMainCalendarBinding
 import com.meng.expirationdate.viewmodel.MainCalendarViewModel
 
+/**
+ * 首页-列表
+ * */
 class MainCalendarFragment: BaseFragment<FragmentMainCalendarBinding>() {
     override fun getLayoutId(): Int = R.layout.fragment_main_calendar
 
