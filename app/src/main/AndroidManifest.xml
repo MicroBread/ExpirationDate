@@ -56,6 +56,10 @@
         <activity android:name=".view.activity.AddItemActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppCommonTheme"/>
+
+        <activity android:name=".view.activity.SearchActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppCommonTheme"/>
     </application>
 
 </manifest>

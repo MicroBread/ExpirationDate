@@ -1,5 +1,6 @@
 package com.meng.expirationdate.view.fragment
 
+import com.meng.expirationdate.BuildConfig
 import com.meng.expirationdate.R
 import com.meng.expirationdate.base.BaseFragment
 import com.meng.expirationdate.databinding.FragmentMainSettingBinding
@@ -21,6 +22,10 @@ class MainSettingFragment: BaseFragment<FragmentMainSettingBinding>() {
     }
 
     override fun initView() {
+        mBinding.apply {
+            vm = mViewModel
+        }
+
         mBinding.rlClear.onClickNoAnim {
             //删除所有数据
             AlertMsgDialog.showMsgDialog(activity, "", getString(R.string.delete_all_confirm_msg), true, getString(R.string.cancel), null, getString(R.string.sure)) {
@@ -35,6 +40,7 @@ class MainSettingFragment: BaseFragment<FragmentMainSettingBinding>() {
     }
 
     override fun initData() {
+        mViewModel.versionName.set(BuildConfig.VERSION_NAME)
     }
 
 }

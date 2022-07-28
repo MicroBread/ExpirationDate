@@ -32,5 +32,6 @@ enum class ItemType(val type: Int, val typeName: String) {
     SEASONING(104, "调味料"),
     SNACK(105, "零食"),
     DRINKS(106, "饮料"),
+    FRUIT(107, "水果"),
     COSMETIC(201, "化妆品"),
 }

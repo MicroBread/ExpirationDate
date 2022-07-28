@@ -21,4 +21,7 @@ interface ItemsDAO {
 
     @Query("SELECT * FROM ItemInfo WHERE itemName = :itemName")
     fun getItemByName(itemName: String): ItemInfo?
+
+    @Query("SELECT * FROM ItemInfo WHERE itemName LIKE '%' || :name || '%' or itemType = :itemType")
+    fun searchItem(name: String, itemType: Int = -1): List<ItemInfo>
 }

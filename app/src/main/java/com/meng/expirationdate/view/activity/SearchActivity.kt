@@ -1,4 +1,4 @@
-package com.meng.expirationdate.view.fragment
+package com.meng.expirationdate.view.activity
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -6,74 +6,87 @@ import android.graphics.drawable.AnimationDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import androidx.lifecycle.Observer
+import android.view.inputmethod.EditorInfo
+import com.blankj.utilcode.util.KeyboardUtils
 import com.jeremyliao.liveeventbus.LiveEventBus
 import com.meng.expirationdate.R
-import com.meng.expirationdate.base.BaseFragment
-import com.meng.expirationdate.databinding.FragmentMainHomeBinding
+import com.meng.expirationdate.base.BaseActivity
+import com.meng.expirationdate.databinding.ActivitySearchBinding
 import com.meng.expirationdate.event.PublicMsgEvent
 import com.meng.expirationdate.room.DBManager
 import com.meng.expirationdate.room.ItemInfo
 import com.meng.expirationdate.utils.CustomToast
+import com.meng.expirationdate.utils.Utils
 import com.meng.expirationdate.utils.onClickNoAnim
-import com.meng.expirationdate.view.activity.AddItemActivity
-import com.meng.expirationdate.view.activity.MainActivity
-import com.meng.expirationdate.view.activity.SearchActivity
 import com.meng.expirationdate.view.adapter.ItemsAdapter
-import com.meng.expirationdate.viewmodel.MainHomeViewModel
+import com.meng.expirationdate.view.fragment.ItemDetailDialogFragment
+import com.meng.expirationdate.viewmodel.SearchViewModel
 import com.meng.expirationdate.widget.ActionSheet
 import com.meng.expirationdate.widget.AlertMsgDialog
 import com.meng.expirationdate.widget.WrapContentLinearLayoutManager
 
 /**
- * 首页-主页列表
+ * 首页-主页-搜索
  * */
-class MainHomeFragment: BaseFragment<FragmentMainHomeBinding>() {
-    override fun getLayoutId(): Int = R.layout.fragment_main_home
+class SearchActivity: BaseActivity<ActivitySearchBinding>() {
+    override fun getLayoutId(): Int = R.layout.activity_search
 
     private val mViewModel by lazy {
-        createVM<MainHomeViewModel>()
+        createVM<SearchViewModel>()
     }
-    private lateinit var adapter: ItemsAdapter
 
+    private lateinit var adapter: ItemsAdapter //列表适配器
+
+    @SuppressLint("NotifyDataSetChanged")
     override fun initView() {
         mBinding.apply {
             vm = mViewModel
         }
 
-        mBinding.imageSearch.onClickNoAnim {
-            //搜索页面
-            startActivity(Intent(activity, SearchActivity::class.java))
+        //获取焦点，弹出软键盘
+        mBinding.etSearch.requestFocus()
+        KeyboardUtils.showSoftInput()
+
+        mBinding.tvCancel.onClickNoAnim {
+            finish() //点击取消后返回首页
         }
 
-        mBinding.imageAdd.onClickNoAnim {
-            //跳转添加页面
-            val intent = Intent(activity, AddItemActivity::class.java)
-            val bundle = Bundle()
-            bundle.putInt("type", 0)
-            intent.putExtra("bundle", bundle)
-            startActivity(intent)
+        mBinding.etSearch.setOnEditorActionListener { _, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                //用户点击搜索
+                if (mBinding.etSearch.text.toString().isBlank()) {
+                    CustomToast.showToast(getString(R.string.search_input_null))
+                } else {
+                    val list = DBManager.getItemsDAO()?.searchItem(mBinding.etSearch.text.toString(), Utils.getTypeByName(mBinding.etSearch.text.toString()))
+                    mViewModel.dataList.value?.clear()
+                    if (list != null && list.isNotEmpty()) {
+                        mViewModel.dataList.value?.addAll(list)
+                    }
+                    mViewModel.dataListSize.set(mViewModel.dataList.value?.size ?: 0)
+                    adapter.notifyDataSetChanged()
+                }
+                KeyboardUtils.hideSoftInput(this@SearchActivity)
+                true
+            }
+            false
         }
 
-        //初始化物品条目适配器
-        adapter = ItemsAdapter(mContext, mViewModel.dataList.value!!)
+        adapter = ItemsAdapter(this, mViewModel.dataList.value!!)
         adapter.setOnItemClickListener(object : ItemsAdapter.OnItemClickListener {
             override fun itemClick(item: ItemInfo) {
                 //查看详情弹窗
-                activity?.supportFragmentManager?.let {
-                    val itemDetailDialogFragment = ItemDetailDialogFragment()
-                    val bundle = Bundle()
-                    bundle.putParcelable("itemInfo", item)
-                    itemDetailDialogFragment.arguments = bundle
-                    itemDetailDialogFragment.showNow(it, "ItemDetailDialogFragment")
-                }
+                val itemDetailDialogFragment = ItemDetailDialogFragment()
+                val bundle = Bundle()
+                bundle.putParcelable("itemInfo", item)
+                itemDetailDialogFragment.arguments = bundle
+                itemDetailDialogFragment.showNow(supportFragmentManager, "ItemDetailDialogFragment")
             }
 
             override fun itemLongClick(item: ItemInfo) {
                 //长按条目
                 val title = arrayOf(getString(R.string.edit), getString(R.string.delete))
-                activity?.setTheme(R.style.ActionSheetStyleiOS)
-                ActionSheet.createBuilder(activity?.supportFragmentManager, (activity as MainActivity).getRootView())
+                setTheme(R.style.ActionSheetStyleiOS)
+                ActionSheet.createBuilder(supportFragmentManager, mBinding.clRoot)
                     .setCancelButtonTitle(getString(R.string.cancel))
                     .setOtherButtonTitles(title)
                     .setHasPromit(false)
@@ -86,7 +99,7 @@ class MainHomeFragment: BaseFragment<FragmentMainHomeBinding>() {
                             when (index) {
                                 0 -> {
                                     //编辑条目
-                                    val intent = Intent(activity, AddItemActivity::class.java)
+                                    val intent = Intent(this@SearchActivity, AddItemActivity::class.java)
                                     val bundle = Bundle()
                                     bundle.putInt("type", 1)
                                     bundle.putParcelable("itemInfo", item)
@@ -95,7 +108,7 @@ class MainHomeFragment: BaseFragment<FragmentMainHomeBinding>() {
                                 }
                                 1 -> {
                                     //删除条目
-                                    AlertMsgDialog.showMsgDialog(activity, "", String.format(getString(R.string.delete_confirm_msg), item.itemName), true, getString(R.string.cancel), null, getString(R.string.sure)) {
+                                    AlertMsgDialog.showMsgDialog(this@SearchActivity, "", String.format(getString(R.string.delete_confirm_msg), item.itemName), true, getString(R.string.cancel), null, getString(R.string.sure)) {
                                         //数据库删除
                                         DBManager.getItemsDAO()?.deleteItem(item)
                                         //显示列表删除
@@ -110,6 +123,7 @@ class MainHomeFragment: BaseFragment<FragmentMainHomeBinding>() {
                                             }
                                             mViewModel.dataListSize.set(it.size)
                                         }
+                                        PublicMsgEvent.dataChangeEvent(1)
                                     }
                                 }
                             }
@@ -122,15 +136,15 @@ class MainHomeFragment: BaseFragment<FragmentMainHomeBinding>() {
 
         })
         mBinding.rv.adapter = adapter
-        mBinding.rv.layoutManager = WrapContentLinearLayoutManager(mContext)
+        mBinding.rv.layoutManager = WrapContentLinearLayoutManager(this)
     }
 
     override fun initData() {
-        refreshAllData() //加载所有item数据
-
         LiveEventBus.get(PublicMsgEvent.DATA_CHANGE_EVENT, Int::class.java).observe(this) {
             //监听数据发生变化，刷新列表
-            refreshAllData()
+            if (it == 0) {
+                refreshAllData()
+            }
         }
     }
 
@@ -139,7 +153,7 @@ class MainHomeFragment: BaseFragment<FragmentMainHomeBinding>() {
      * */
     @SuppressLint("NotifyDataSetChanged")
     private fun refreshAllData() {
-        val list = DBManager.getItemsDAO()?.getAllItems()
+        val list = DBManager.getItemsDAO()?.searchItem(mBinding.etSearch.text.toString(), Utils.getTypeByName(mBinding.etSearch.text.toString()))
         mViewModel.dataList.value?.clear()
         if (list != null && list.isNotEmpty()) {
             mViewModel.dataList.value?.addAll(list)

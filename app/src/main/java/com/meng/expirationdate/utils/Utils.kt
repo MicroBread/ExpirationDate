@@ -21,8 +21,25 @@ object Utils {
             ItemType.SEASONING.type -> R.drawable.icon_seaconing
             ItemType.SNACK.type -> R.drawable.icon_snack
             ItemType.DRINKS.type -> R.drawable.icon_drinks
+            ItemType.FRUIT.type -> R.drawable.icon_fruit
             ItemType.COSMETIC.type -> R.drawable.icon_cosmetic
             else -> R.drawable.icon_obj_default
+        }
+    }
+
+    @JvmStatic
+    fun getTypeByName(name: String?): Int {
+        if (name.isNullOrBlank()) return -1
+        return when (name) {
+            ItemType.CAN.typeName -> ItemType.CAN.type
+            ItemType.MEAT.typeName -> ItemType.MEAT.type
+            ItemType.VEGETABLE.typeName -> ItemType.VEGETABLE.type
+            ItemType.SEASONING.typeName -> ItemType.SEASONING.type
+            ItemType.SNACK.typeName -> ItemType.SNACK.type
+            ItemType.DRINKS.typeName -> ItemType.DRINKS.type
+            ItemType.FRUIT.typeName -> ItemType.FRUIT.type
+            ItemType.COSMETIC.typeName -> ItemType.COSMETIC.type
+            else -> -1
         }
     }
 }

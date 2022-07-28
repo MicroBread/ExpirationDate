@@ -45,4 +45,6 @@
     <string name="cancel">取消</string>
     <string name="clear_all">清除所有数据</string>
     <string name="no_data">暂无数据</string>
+    <string name="search_input_hint">输入搜索内容</string>
+    <string name="search_input_null">搜索内容不能为空</string>
 </resources>

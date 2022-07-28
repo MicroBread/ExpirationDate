@@ -70,6 +70,7 @@ class ItemTypeDialogFragment: BaseDialogFragment<FragmentDialogItemTypeBinding>(
         array.add(ItemTypeSelectViewModel(ItemTypeBean(ItemType.SEASONING.type, ItemType.SEASONING.typeName, itemTypeSelected == ItemType.SEASONING.type)))
         array.add(ItemTypeSelectViewModel(ItemTypeBean(ItemType.SNACK.type, ItemType.SNACK.typeName, itemTypeSelected == ItemType.SNACK.type)))
         array.add(ItemTypeSelectViewModel(ItemTypeBean(ItemType.DRINKS.type, ItemType.DRINKS.typeName, itemTypeSelected == ItemType.DRINKS.type)))
+        array.add(ItemTypeSelectViewModel(ItemTypeBean(ItemType.FRUIT.type, ItemType.FRUIT.typeName, itemTypeSelected == ItemType.FRUIT.type)))
         array.add(ItemTypeSelectViewModel(ItemTypeBean(ItemType.COSMETIC.type, ItemType.COSMETIC.typeName, itemTypeSelected == ItemType.COSMETIC.type)))
         observableList.setNewData(array)
     }
