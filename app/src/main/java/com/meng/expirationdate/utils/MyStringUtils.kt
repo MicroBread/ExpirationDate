@@ -5,8 +5,12 @@ import com.blankj.utilcode.util.StringUtils
 import com.meng.expirationdate.R
 import com.meng.expirationdate.room.ItemType
 import java.text.SimpleDateFormat
+import kotlin.math.abs
 
 object MyStringUtils {
+    /**
+     * 根据时间戳获取日期
+     * */
     @SuppressLint("SimpleDateFormat")
     @JvmStatic
     fun getDate(date: Long?): String {
@@ -22,6 +26,9 @@ object MyStringUtils {
         return StringUtils.getString(R.string.date_error)
     }
 
+    /**
+     * 根据时间戳获取日期
+     * */
     @SuppressLint("SimpleDateFormat")
     @JvmStatic
     fun getDateByTime(date: Long?): String {
@@ -37,6 +44,9 @@ object MyStringUtils {
         return StringUtils.getString(R.string.date_error)
     }
 
+    /**
+     * 备注
+     * */
     @JvmStatic
     fun getRemark(remark: String?): String {
         return if (remark.isNullOrBlank()) {
@@ -52,6 +62,9 @@ object MyStringUtils {
             if (type == 0) R.string.production_date_format else R.string.expiration_date_format), dateStr)
     }
 
+    /**
+     * 根据类型ID获取类型名
+     * */
     @JvmStatic
     fun getItemType(type: Int?): String {
         return when(type) {
@@ -67,6 +80,9 @@ object MyStringUtils {
         }
     }
 
+    /**
+     * 根据是否过期返回字符串
+     * */
     @JvmStatic
     fun getTimeComparedResult(date: String?): String {
         if (date.isNullOrBlank()) return StringUtils.getString(R.string.date_error)
@@ -77,6 +93,9 @@ object MyStringUtils {
         }
     }
 
+    /**
+     * 判断是否过期
+     * */
     @SuppressLint("SimpleDateFormat")
     @JvmStatic
     fun compareTime(date: String?): Boolean {
@@ -87,5 +106,20 @@ object MyStringUtils {
         }
         val currentTime = System.currentTimeMillis()
         return (currentTime >= dateTime)
+    }
+
+    /**
+     * 计算日期差值
+     * */
+    @SuppressLint("SimpleDateFormat")
+    @JvmStatic
+    fun calculateTime(date: String?): String {
+        val dateTime = if (date.isNullOrBlank()) {
+            0L
+        } else {
+            SimpleDateFormat("yyyy-MM-dd").parse(date)?.time ?: 0L
+        }
+        val resultTime = abs(System.currentTimeMillis() - dateTime) / 1000 / 60 /60 / 24 //天数
+        return String.format(StringUtils.getString(R.string.day_format), resultTime + 1)
     }
 }

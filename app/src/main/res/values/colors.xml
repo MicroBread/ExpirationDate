@@ -16,6 +16,7 @@
     <color name="text_black">#2c2c2c</color>
     <color name="text_gray">#7c7c7c</color>
     <color name="line_color_50">#80D8D8D8</color>
+    <color name="day_red">#EB9088</color>
 
     <color name="right_green">#1afa29</color>
     <color name="wrong_red">#d81e06</color>

@@ -5,6 +5,9 @@ import com.meng.expirationdate.base.BaseApplication
 import com.meng.expirationdate.room.ItemType
 
 object Utils {
+    /**
+     * dp转换为px
+     * */
     @JvmStatic
     fun convertDpToPixelOfInt(dp: Int): Int {
         val resources = BaseApplication.instance().resources
@@ -12,6 +15,9 @@ object Utils {
         return (dp * metrics.density + 0.5f).toInt()
     }
 
+    /**
+     * 根据物品类型返回图片
+     * */
     @JvmStatic
     fun getTypeDrawables(type: Int?): Int {
         return when (type ?: 0) {
@@ -27,6 +33,9 @@ object Utils {
         }
     }
 
+    /**
+     * 根据物品类型名返回类型ID
+     * */
     @JvmStatic
     fun getTypeByName(name: String?): Int {
         if (name.isNullOrBlank()) return -1
