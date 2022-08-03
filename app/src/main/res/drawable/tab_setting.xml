@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:drawable="@mipmap/tab_ic_selected_setting" android:state_checked="true" />
-    <item android:drawable="@mipmap/tab_ic_normal_setting" />
+    <item android:drawable="@drawable/tab_ic_selected_setting" android:state_checked="true" />
+    <item android:drawable="@drawable/tab_ic_normal_setting" />
 </selector>

@@ -132,6 +132,9 @@ dependencies {
 
     implementation project(':flutter')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    //excel
+    implementation 'net.sourceforge.jexcelapi:jxl:2.6.12'
 }
 
 configurations {

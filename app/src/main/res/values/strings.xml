@@ -9,9 +9,12 @@
     <string name="save">保存</string>
     <string name="required">必填</string>
     <string name="optional">选填</string>
+    <string name="id">物品ID</string>
+    <string name="item_info">物品信息</string>
     <string name="name">名称</string>
     <string name="number">数量</string>
     <string name="remark">备注</string>
+    <string name="sort_id">分类ID</string>
     <string name="sort">分类</string>
     <string name="status">状态</string>
     <string name="add_date">添加日期</string>
@@ -46,6 +49,10 @@
     <string name="sure">确认</string>
     <string name="cancel">取消</string>
     <string name="clear_all">清除所有数据</string>
+    <string name="save_to_excel">导出至EXCEL文件</string>
+    <string name="save_to_excel_confirm">确认导出数据？</string>
+    <string name="save_to_excel_success">导出成功</string>
+    <string name="save_to_excel_no_data">暂无数据，先去添加再导出吧！</string>
     <string name="no_data">暂无数据</string>
     <string name="search_input_hint">输入搜索内容</string>
     <string name="search_input_null">搜索内容不能为空</string>

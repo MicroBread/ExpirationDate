@@ -19,7 +19,7 @@
             android:id="@+id/iv_back"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:src="@mipmap/back"
+            android:src="@drawable/back"
             android:padding="10dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
@@ -82,7 +82,7 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_centerVertical="true"
-                android:src="@mipmap/item_name"/>
+                android:src="@drawable/item_name"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -127,7 +127,7 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_centerVertical="true"
-                android:src="@mipmap/item_num"/>
+                android:src="@drawable/item_num"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -174,7 +174,7 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_centerVertical="true"
-                android:src="@mipmap/item_remark" />
+                android:src="@drawable/item_remark" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -222,7 +222,7 @@
                 android:layout_height="24dp"
                 android:layout_centerVertical="true"
                 android:padding="1dp"
-                android:src="@mipmap/item_sort" />
+                android:src="@drawable/item_sort" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -252,7 +252,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="10dp"
-                android:src="@mipmap/right_arrow" />
+                android:src="@drawable/right_arrow" />
 
             <View
                 android:layout_width="match_parent"
@@ -274,7 +274,7 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_centerVertical="true"
-                android:src="@mipmap/item_date" />
+                android:src="@drawable/item_date" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -303,7 +303,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="10dp"
-                android:src="@mipmap/right_arrow" />
+                android:src="@drawable/right_arrow" />
 
             <View
                 android:layout_width="match_parent"
@@ -325,7 +325,7 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_centerVertical="true"
-                android:src="@mipmap/item_date_type" />
+                android:src="@drawable/item_date_type" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -387,7 +387,7 @@
                 android:layout_height="24dp"
                 android:layout_centerVertical="true"
                 android:padding="1dp"
-                android:src="@mipmap/item_days" />
+                android:src="@drawable/item_days" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -433,7 +433,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="10dp"
-                android:src="@mipmap/right_arrow"
+                android:src="@drawable/right_arrow"
                 android:visibility="@{vm.dateType==1?View.VISIBLE:View.INVISIBLE}"/>
 
             <View
